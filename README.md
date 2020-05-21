@@ -2,4 +2,4 @@
 Defangi is an empty project framework created with nodejs
 
 ## Getting Started
-Bu talimatlar, geliştirme ve test amacıyla projenin bir kopyasını yerel makinenizde çalıştırıp çalıştırmanızı sağlar.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy(Bold Example) the project on a live system.
