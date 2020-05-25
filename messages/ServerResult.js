@@ -1,19 +1,25 @@
 class ServerResult {
-    errorResult(message) {
-        console.log('çalıştı')
+    errorResult(status, message) {
         return {
-            status: false,
-            message: message,
-        };
-    }
-    
-    successResult(message) {
-        return {
-            status: false,
+            status: status,
             message: message,
         };
     }
 
+    successResult(status, message) {
+        return {
+            status: status,
+            message: message,
+        };
+    }
+
+    successResult(status, message, data) {
+        return {
+            status: status,
+            message: message,
+            result: data,
+        };
+    }
 }
 
-module.exports= new ServerResult();
+module.exports = new ServerResult();

@@ -1,0 +1,38 @@
+{
+    "addSuccess":{
+        "code":201,
+        "message":"Created"
+    },
+    "updateSuccess":{
+        "code":200,
+        "message":"Ok"
+    },
+    "getSuccess":{
+        "code":200,
+        "message":"Ok"
+    },
+    "deleteSuccess":{
+        "code":204,
+        "message":"No Content"
+    },
+    "sourceNotFound":{
+        "code":410,
+        "message":"Gone"
+    },
+    "sourceNotAvailable":{
+        "code":404,
+        "message":"NotFound"
+    },
+    "notAuthorized":{
+        "code":403,
+        "message":"Forbidden"
+    },
+    "notUnderstood":{
+        "code":400,
+        "message":"BadRequest"
+    },
+    "unAuthorized":{
+        "code":401,
+        "message":"Unauthorized"
+    }
+}

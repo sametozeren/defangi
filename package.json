@@ -4,6 +4,7 @@
   "description": "Defangi is an empty project framework created with nodejs.",
   "main": "index.js",
   "scripts": {
+    "start":"nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

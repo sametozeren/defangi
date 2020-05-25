@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const ConsoleResult = require('./messages/ConsoleResult');
+const ServerResult = require('./messages/ServerResult');
+const ResponseMessage = require('./messages/Messages.json');
 
 async function main() {
     try {
         await mongoose.connect(
-            process.env.MONGODB_CONNECTION_STRING || 'mongodb+srv://sametozrn:123123.123@defangi-gfvsx.mongodb.net/' +
-            'defangi?retryWrites=true&w=majority', {
+            process.env.MONGODB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/defangi', {
                 useUnifiedTopology: true,
                 useNewUrlParser: true
             }
@@ -13,7 +14,8 @@ async function main() {
 
         ConsoleResult.success('Connected');
     } catch (error) {
-        ConsoleResult.error('Not Connected: '+ error);
+        //TODO: ServerResult()
+        ConsoleResult.error('Not Connected: ' + error);
     }
 }
 
