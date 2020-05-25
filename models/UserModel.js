@@ -5,7 +5,7 @@ const UserSchema = new Mongoose.Schema({
         required: true,
         minlength: 2
     },
-    name: {
+    /*name: {
         type: String,
         required: true,
         minlength: 2
@@ -19,12 +19,12 @@ const UserSchema = new Mongoose.Schema({
         type: Number,
         required: true,
         min: 13
-    },
-    passwordHash: {
+    },*/
+    password: {
         type: String,
         required: true,
         minlength: 2
-    },
+    },/*
     email: {
         type: String,
         required: true,
@@ -36,7 +36,7 @@ const UserSchema = new Mongoose.Schema({
     status: {
         type: Boolean,
         required: true,
-    },
+    },*/
 });
 
 const UserModel = Mongoose.model('users', UserSchema);

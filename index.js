@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const ConsoleResult = require('./messages/ConsoleResult');
 const {
-    UserRouter
+    UserRoutes
 } = require('./routes/index');
 
 require('./mongodb-connection');
@@ -12,7 +12,7 @@ require('./mongodb-connection');
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/user', UserRouter);
+app.use('/user', UserRoutes);
 
 app.get('/', (req, res) => {
     res.send('<h1>DEFANGİ API</h1>');
