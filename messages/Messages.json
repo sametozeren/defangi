@@ -34,5 +34,22 @@
     "unAuthorized":{
         "code":401,
         "message":"Unauthorized"
+    },
+    "userNameAlreadyExist":{
+        "code":409,
+        "message":"User Name Already Exist."
+    },
+    "userEmailAlreadyExist":{
+        "code":409,
+        "message":"User Email Already Exist."
+    },
+    "passwordHashMethodNotAllowed":{
+        "code":409,
+        "message":"Password hash method not allowed."
+    },
+    "userLoginFailed":{
+        "code":406,
+        "message":"Username or password incorrect."
     }
+
 }

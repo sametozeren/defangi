@@ -14,9 +14,11 @@ module.exports = {
             username,
         });
 
-        if (result.status === 200)
-            return res.json(ServerResult.errorResult(Messages.userNameAlreadyExist.code,
-                Messages.userNameAlreadyExist.message));
+        if (result.status === 410)
+            return res.json(ServerResult.errorResult(Messages.userLoginFailed.code,
+                Messages.userLoginFailed.message));
+
+        req.body.user = result.result;
 
         next();
     },
@@ -30,28 +32,31 @@ module.exports = {
             email,
         });
 
-        if (result.status === 200) {
-            return res.json(ServerResult.errorResult(Messages.userEmailAlreadyExist.code,
-                Messages.userEmailAlreadyExist.message));
+        if (result.status === 410) {
+            return res.json(ServerResult.errorResult(Messages.userLoginFailed.code,
+                Messages.userLoginFailed.message));
         }
 
         next();
     },
 
-    passwordHash(req, res, next) {
+    verifyPassword(req, res, next) {
         let {
+            user,
             password
         } = req.body;
 
-        Bcrypt.hash(password, 10, (err, hashedPassword) => {
+        Bcrypt.compare(password, user.password, (err, response) => {
             if (err) {
-                return res.json(ServerResult.errorResult(Messages.passwordHashMethodNotAllowed.code,
-                    Messages.passwordHashMethodNotAllowed.message));
+                return res.json(ServerResult.errorResult(Messages.userLoginFailed.code,
+                    Messages.userLoginFailed.message));
             }
-
-            req.body.password = hashedPassword;
 
             next();
         });
+    },
+
+    createToken(req, res, next) {
+        next();
     },
 }

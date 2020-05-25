@@ -24,11 +24,11 @@ const UserSchema = new Mongoose.Schema({
         type: String,
         required: true,
         minlength: 2
-    },/*
+    },
     email: {
         type: String,
         required: true,
-    },
+    },/*
     activationCode: {
         type: String,
         required: false,

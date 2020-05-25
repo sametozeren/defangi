@@ -6,7 +6,7 @@ module.exports = class BaseService {
         try {
             var result = await this.model.find();
 
-            if (!result) {
+            if (result.length===0) {
                 return ServerResult.errorResult(Messages.sourceNotFound.code, Messages.sourceNotFound.message, result);
             }
 
@@ -19,6 +19,20 @@ module.exports = class BaseService {
     async getById(itemId) {
         try {
             var result = await this.model.findById(itemId);
+
+            if (!result) {
+                return ServerResult.errorResult(Messages.sourceNotFound.code, Messages.sourceNotFound.message, result);
+            }
+
+            return ServerResult.successResult(Messages.getSuccess.code, Messages.getSuccess.message, result);
+        } catch (error) {
+            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message);
+        }
+    }
+
+    async getByOne(conditionsObject) {
+        try {
+            var result = await this.model.findOne(conditionsObject);
 
             if (!result) {
                 return ServerResult.errorResult(Messages.sourceNotFound.code, Messages.sourceNotFound.message, result);

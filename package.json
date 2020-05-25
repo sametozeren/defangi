@@ -4,7 +4,7 @@
   "description": "Defangi is an empty project framework created with nodejs.",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon index",
+    "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/sametozeren/defangi#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
