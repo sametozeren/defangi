@@ -12,7 +12,7 @@ const UserSchema = new Mongoose.Schema({
         },
         minlength: 6
     },
-    email: {
+    /*email: {
         type: String,
         required: true,
         validate:{
@@ -23,7 +23,7 @@ const UserSchema = new Mongoose.Schema({
             message:props => `'${props.value}' not a valid email address.`,
         },
         
-    },
+    },*/
     password: {
         type: String,
         required: true,

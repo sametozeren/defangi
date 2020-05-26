@@ -1,8 +1,7 @@
 const bcrypt = require('bcrypt');
 const UserService = require('../services/UserService');
-const Messages = require('../messages/Messages.json');
 const ServerResult = require('../messages/ServerResult');
-
+const Messages = require('../messages/Messages.json');
 
 module.exports = {
     async isUserExists(req, res, next) {

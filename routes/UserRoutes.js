@@ -7,19 +7,19 @@ router.get('/getAll', async (req, res) => {
 });
 
 router.get('/get', async (req, res) => {
-    res.send(await UserService.getById()); //TODO: res.params|| req.query ex.
+    res.send(await UserService.getById(req.body));
 });
 
 router.post('/new', async (req, res) => {
     res.send(await UserService.add(req.body));
 });
 
-router.post('/update', async (req, res) => {
-    res.send(await UserService.update()); //TODO: res.params|| req.query ex.
+router.put('/update', async (req, res) => {
+    res.send(await UserService.update(req.body));
 });
 
 router.delete('/delete', async (req, res) => {
-    res.send(await UserService.add()); //TODO: res.params|| req.query ex.
+    res.send(await UserService.add(req.body));
 });
 
 module.exports = router;

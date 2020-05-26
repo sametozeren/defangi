@@ -61,7 +61,6 @@ module.exports = {
     async createToken(req, res, next) {
         let user = {
             username: req.body.user.username,
-            email: req.body.user.email,
         };
 
         const token = await jwt.sign({

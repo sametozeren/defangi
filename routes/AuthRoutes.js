@@ -9,7 +9,7 @@ const {
     AuthMiddleware
 } = require('../middleware/index');
 
-router.post('/register', [UserMiddleware.isUserExists, UserMiddleware.isEmailExists, UserMiddleware.passwordHash],
+router.post('/register', [UserMiddleware.isUserExists, UserMiddleware.passwordHash],
     async (req, res) => {
         res.send(await UserService.add(req.body));
     });
