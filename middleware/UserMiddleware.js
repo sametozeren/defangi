@@ -1,4 +1,4 @@
-const Bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const UserService = require('../services/UserService');
 const Messages = require('../messages/Messages.json');
 const ServerResult = require('../messages/ServerResult');
@@ -15,7 +15,7 @@ module.exports = {
         });
 
         if (result.status === 200)
-            return res.json(ServerResult.errorResult(Messages.userNameAlreadyExist.code,
+            return res.send(ServerResult.errorResult(Messages.userNameAlreadyExist.code,
                 Messages.userNameAlreadyExist.message));
 
         next();
@@ -31,7 +31,7 @@ module.exports = {
         });
 
         if (result.status === 200) {
-            return res.json(ServerResult.errorResult(Messages.userEmailAlreadyExist.code,
+            return res.send(ServerResult.errorResult(Messages.userEmailAlreadyExist.code,
                 Messages.userEmailAlreadyExist.message));
         }
 
@@ -43,9 +43,9 @@ module.exports = {
             password
         } = req.body;
 
-        Bcrypt.hash(password, 10, (err, hashedPassword) => {
+        bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) {
-                return res.json(ServerResult.errorResult(Messages.passwordHashMethodNotAllowed.code,
+                return res.send(ServerResult.errorResult(Messages.passwordHashMethodNotAllowed.code,
                     Messages.passwordHashMethodNotAllowed.message));
             }
 

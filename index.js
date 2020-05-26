@@ -22,11 +22,15 @@ app.use('/api/user', UserRoutes);
 app.use('/api/auth', AuthRoutes);
 
 app.get('/', (req, res) => {
-    res.send('<h1>DEFANGİ API</h1>');
+    res.send(ServerResult.successResult(Messages.getSuccess.code,Messages.getSuccess.message));
 });
 
 app.get('*', (req, res) => {
-    res.send(ServerResult.successResult(Messages.sourceNotAvailable.code, Messages.sourceNotAvailable.message));
+    res.send(ServerResult.errorResult(Messages.sourceNotAvailable.code, Messages.sourceNotAvailable.message));
+});
+
+app.post('*', (req, res) => {
+    res.send(ServerResult.errorResult(Messages.sourceNotAvailable.code, Messages.sourceNotAvailable.message));
 });
 
 app.listen(process.env.PORT || 3000, () => {

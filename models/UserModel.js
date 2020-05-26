@@ -3,40 +3,32 @@ const UserSchema = new Mongoose.Schema({
     username: {
         type: String,
         required: true,
-        minlength: 2
-    },
-    /*name: {
-        type: String,
-        required: true,
-        minlength: 2
-    },
-    surname: {
-        type: String,
-        required: true,
-        minlength: 2
-    },
-    age: {
-        type: Number,
-        required: true,
-        min: 13
-    },*/
-    password: {
-        type: String,
-        required: true,
-        minlength: 2
+        validate:{
+            validator:function(data){
+                return /^[a-z][a-z]+\d*$/i.test(data);
+            },
+
+            message:props => `'${props.value}' not a valid username.`,
+        },
+        minlength: 6
     },
     email: {
         type: String,
         required: true,
-    },/*
-    activationCode: {
-        type: String,
-        required: false,
+        validate:{
+            validator:function(data){
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data);
+            },
+
+            message:props => `'${props.value}' not a valid email address.`,
+        },
+        
     },
-    status: {
-        type: Boolean,
+    password: {
+        type: String,
         required: true,
-    },*/
+        minlength: 6
+    },
 });
 
 const UserModel = Mongoose.model('users', UserSchema);

@@ -6,13 +6,13 @@ module.exports = class BaseService {
         try {
             var result = await this.model.find();
 
-            if (result.length===0) {
+            if (result.length === 0) {
                 return ServerResult.errorResult(Messages.sourceNotFound.code, Messages.sourceNotFound.message, result);
             }
 
             return ServerResult.successResult(Messages.getSuccess.code, Messages.getSuccess.message, result);
         } catch (error) {
-            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message);
+            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message+ error);
         }
     }
 
@@ -26,7 +26,7 @@ module.exports = class BaseService {
 
             return ServerResult.successResult(Messages.getSuccess.code, Messages.getSuccess.message, result);
         } catch (error) {
-            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message);
+            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message+ error);
         }
     }
 
@@ -40,7 +40,7 @@ module.exports = class BaseService {
 
             return ServerResult.successResult(Messages.getSuccess.code, Messages.getSuccess.message, result);
         } catch (error) {
-            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message);
+            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message + error);
         }
     }
 
@@ -54,13 +54,13 @@ module.exports = class BaseService {
 
             return ServerResult.successResult(Messages.addSuccess.code, Messages.addSuccess.message, result);
         } catch (error) {
-            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message);
+            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message + error);
         }
     }
 
     async update(item) {
         try {
-            var result = await this.model.update(item);//TODO: they will be checked
+            var result = await this.model.update(item); //TODO: they will be checked
 
             if (!result) {
                 return ServerResult.errorResult(Messages.sourceNotFound.code, Messages.sourceNotFound.message, result);
@@ -68,7 +68,7 @@ module.exports = class BaseService {
 
             return ServerResult.successResult(Messages.updateSuccess.code, Messages.updateSuccess.message, result);
         } catch (error) {
-            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message);
+            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message+ error);
         }
     }
 
@@ -82,7 +82,7 @@ module.exports = class BaseService {
 
             return ServerResult.successResult(Messages.deleteSuccess.code, Messages.deleteSuccess.message, result);
         } catch (error) {
-            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message);
+            return ServerResult.errorResult(Messages.notUnderstood.code, Messages.notUnderstood.message+ error);
         }
     }
 }

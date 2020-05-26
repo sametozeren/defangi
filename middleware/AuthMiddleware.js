@@ -1,4 +1,6 @@
-const Bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 const UserService = require('../services/UserService');
 const Messages = require('../messages/Messages.json');
 const ServerResult = require('../messages/ServerResult');
@@ -15,7 +17,7 @@ module.exports = {
         });
 
         if (result.status === 410)
-            return res.json(ServerResult.errorResult(Messages.userLoginFailed.code,
+            return res.send(ServerResult.errorResult(Messages.userLoginFailed.code,
                 Messages.userLoginFailed.message));
 
         req.body.user = result.result;
@@ -33,7 +35,7 @@ module.exports = {
         });
 
         if (result.status === 410) {
-            return res.json(ServerResult.errorResult(Messages.userLoginFailed.code,
+            return res.send(ServerResult.errorResult(Messages.userLoginFailed.code,
                 Messages.userLoginFailed.message));
         }
 
@@ -46,9 +48,9 @@ module.exports = {
             password
         } = req.body;
 
-        Bcrypt.compare(password, user.password, (err, response) => {
+        bcrypt.compare(password, user.password, (err, response) => {
             if (err) {
-                return res.json(ServerResult.errorResult(Messages.userLoginFailed.code,
+                return res.send(ServerResult.errorResult(Messages.userLoginFailed.code,
                     Messages.userLoginFailed.message));
             }
 
@@ -56,7 +58,38 @@ module.exports = {
         });
     },
 
-    createToken(req, res, next) {
+    async createToken(req, res, next) {
+        let user = {
+            username: req.body.user.username,
+            email: req.body.user.email,
+        };
+
+        const token = await jwt.sign({
+                user,
+            },
+            config.jwt_secret_key, {
+                expiresIn: "1m",
+            });
+
+        req.body.user = user;
+        req.body.token = token;
+
         next();
+    },
+
+    async verifyToken(req, res, next) {
+        let {
+            token
+        } = req.body;
+
+        await jwt.verify(token, config.jwt_secret_key, function (err, decoded) {
+            if (err) {
+                return res.send(ServerResult.errorResult(Messages.unAuthorized.code, Messages.unAuthorized.message));
+            }
+
+            req.body.user = decoded;
+
+            next();
+        });
     },
 }

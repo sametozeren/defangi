@@ -1,39 +1,39 @@
 {
     "addSuccess":{
         "code":201,
-        "message":"Created"
+        "message":"Created."
     },
     "updateSuccess":{
         "code":200,
-        "message":"Ok"
+        "message":"Ok."
     },
     "getSuccess":{
         "code":200,
-        "message":"Ok"
+        "message":"Ok."
     },
     "deleteSuccess":{
         "code":204,
-        "message":"No Content"
+        "message":"No Content."
     },
     "sourceNotFound":{
         "code":410,
-        "message":"Gone"
+        "message":"Gone."
     },
     "sourceNotAvailable":{
         "code":404,
-        "message":"NotFound"
+        "message":"NotFound."
     },
     "notAuthorized":{
         "code":403,
-        "message":"Forbidden"
+        "message":"Forbidden."
     },
     "notUnderstood":{
         "code":400,
-        "message":"BadRequest"
+        "message":"BadRequest."
     },
     "unAuthorized":{
         "code":401,
-        "message":"Unauthorized"
+        "message":"Un Authorized."
     },
     "userNameAlreadyExist":{
         "code":409,
@@ -45,11 +45,14 @@
     },
     "passwordHashMethodNotAllowed":{
         "code":409,
-        "message":"Password hash method not allowed."
+        "message":"Password Hash Method Not Allowed."
     },
     "userLoginFailed":{
         "code":406,
-        "message":"Username or password incorrect."
+        "message":"Username Or Password Incorrect."
+    },
+    "userLoginSuccess":{
+        "code":200,
+        "message":"User Login Succeeded."
     }
-
 }
