@@ -11,6 +11,10 @@ const {
     AuthRoutes
 } = require('./routes/index');
 
+
+// .env file included
+require('dotenv').config();
+
 connectDb();
 
 app.use(bodyParser.urlencoded({

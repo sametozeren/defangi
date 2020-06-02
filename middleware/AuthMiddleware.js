@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const config = require('../config');
 const UserService = require('../services/UserService');
 const Messages = require('../messages/Messages.json');
 const ServerResult = require('../messages/ServerResult');
@@ -66,7 +65,7 @@ module.exports = {
         const token = await jwt.sign({
                 user,
             },
-            config.jwt_secret_key, {
+            process.env.Jwt_Secret_Key, {
                 expiresIn: "1m",
             });
 
@@ -81,7 +80,7 @@ module.exports = {
             token
         } = req.body;
 
-        await jwt.verify(token, config.jwt_secret_key, function (err, decoded) {
+        await jwt.verify(token, process.env.Jwt_Secret_Key, function (err, decoded) {
             if (err) {
                 return res.send(ServerResult.errorResult(Messages.unAuthorized.code, Messages.unAuthorized.message));
             }
