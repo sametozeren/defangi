@@ -12,7 +12,7 @@ npm install
 ```
 
 ## Running This Project
-Don't forget to update the connectDb.js file.
+Set .env file with your MongoURI and Jwt_Secret_Key.
 ``` 
 npm start
 ```
