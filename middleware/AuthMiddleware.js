@@ -11,15 +11,15 @@ module.exports = {
             username
         } = req.body;
 
-        let result = await UserService.getByOne({
+        let response = await UserService.getByOne({
             username,
         });
 
-        if (result.status === 410)
+        if (response.status === 410)
             return res.send(ServerResult.errorResult(Messages.userLoginFailed.code,
                 Messages.userLoginFailed.message));
 
-        req.body.user = result.result;
+        req.body.user = response.result;
 
         next();
     },
@@ -29,11 +29,11 @@ module.exports = {
             email
         } = req.body;
 
-        let result = await UserService.getByOne({
+        let response = await UserService.getByOne({
             email,
         });
 
-        if (result.status === 410) {
+        if (response.status === 410) {
             return res.send(ServerResult.errorResult(Messages.userLoginFailed.code,
                 Messages.userLoginFailed.message));
         }
@@ -48,7 +48,7 @@ module.exports = {
         } = req.body;
 
         bcrypt.compare(password, user.password, (err, response) => {
-            if (err) {
+            if (err || response === false) {
                 return res.send(ServerResult.errorResult(Messages.userLoginFailed.code,
                     Messages.userLoginFailed.message));
             }
@@ -75,12 +75,12 @@ module.exports = {
         next();
     },
 
-    async verifyToken(req, res, next) {
+    verifyToken(req, res, next) {
         let {
             token
         } = req.body;
 
-        await jwt.verify(token, process.env.Jwt_Secret_Key, function (err, decoded) {
+        jwt.verify(token, process.env.Jwt_Secret_Key, function (err, decoded) {
             if (err) {
                 return res.send(ServerResult.errorResult(Messages.unAuthorized.code, Messages.unAuthorized.message));
             }

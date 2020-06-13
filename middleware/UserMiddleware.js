@@ -9,11 +9,11 @@ module.exports = {
             username
         } = req.body;
 
-        let result = await UserService.getByOne({
+        let response = await UserService.getByOne({
             username,
         });
 
-        if (result.status === 200)
+        if (response.status === 200)
             return res.send(ServerResult.errorResult(Messages.userNameAlreadyExist.code,
                 Messages.userNameAlreadyExist.message));
 
@@ -25,11 +25,11 @@ module.exports = {
             email
         } = req.body;
 
-        let result = await UserService.getByOne({
+        let response = await UserService.getByOne({
             email,
         });
 
-        if (result.status === 200) {
+        if (response.status === 200) {
             return res.send(ServerResult.errorResult(Messages.userEmailAlreadyExist.code,
                 Messages.userEmailAlreadyExist.message));
         }
