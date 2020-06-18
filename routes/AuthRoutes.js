@@ -18,7 +18,7 @@ router.post('/login', [AuthMiddleware.isUserExists, AuthMiddleware.verifyPasswor
     async (req, res) => {
         res.send(ServerResult.successResult(Messages.userLoginSuccess.code, Messages.userLoginSuccess.message, {
             token: req.body.token,
-            userInfo: req.body.user,
+            expiresIn: new Date().getTime() + 3600 * 1000, //default 1 hour
         }));
     });
 
